@@ -24,8 +24,6 @@ The App Manifest is the JSON configuration of an app, created and edited in the 
 
 `icon` : An icon to display alongside the app, specified as a URL.
 
-`description` : A description of what the app does
-
 `main_url` : The URL of the app’s Main Iframe. This Iframe will be mounted on init of the UI, and will persist for the lifetime of the app.
 
 `dev_mode_url`: The URL of the app’s Main Iframe used when [development mode](https://a.cl.ly/NQuJdXep) is enabled, defaults to localhost. Useful to quickly switch between development and production versions of the app.
