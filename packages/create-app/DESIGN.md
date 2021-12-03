@@ -1,5 +1,13 @@
 # Design
 
+## Initialize Command
+
+The current model this package works off of is that there's an `examples` directory at the top-level of this repo.
+With this `examples` directory, we should be able to initialize with any of the actual examples.
+This package downloads a tarball of the repo, extracts it, then copies only the specific example into the App developer's file system.
+Once the example is on disk, it runs either `npm install` or `yarn install` depending on how it's called:
+`npm init` gives `npm install`, `yarn create` gives `yarn install`.
+
 ## Build
 
 This package builds and bundles to a single minified JavaScript file.

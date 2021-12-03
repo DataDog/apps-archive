@@ -11,6 +11,7 @@ const pipeline = util.promisify(stream.Stream.pipeline);
 
 const defaultBranch = "master";
 const defaultDirectoryName = "starter-kit";
+const defaultExample = "starter-kit";
 
 /**
  * Helper to make logging just a bit easier.
@@ -52,6 +53,13 @@ export class Command extends clipanion.Command {
   });
 
   /**
+   * This option allows App developers to select an example to initialize with.
+   */
+  example = clipanion.Option.String("--example", defaultExample, {
+    description: `The example to initialize. Defaults to the \`${defaultExample}\`, if not supplied`,
+  });
+
+  /**
    * This option is useful for debugging purposes.
    */
   verbose = clipanion.Option.Boolean("--verbose", false, {
@@ -68,6 +76,7 @@ export class Command extends clipanion.Command {
     logDebug({
       options: {
         commit: this.commit,
+        example: this.example,
         directory: this.directory,
         verbose: this.verbose,
       },
@@ -77,16 +86,16 @@ export class Command extends clipanion.Command {
     await fs.promises.mkdir(this.directory, { recursive: true });
     logDebug(`Created ${this.directory} directory`);
 
-    logInfo("Downloading starter-kit example…");
+    logInfo(`Downloading ${this.example} example…`);
     await pipeline(
       got.default.stream(
         `https://github.com/DataDog/apps/archive/${this.commit}.tar.gz`
       ),
       tar.extract({ cwd: this.directory, stripComponents: 3 }, [
-        `apps-${this.commit}/examples/starter-kit`,
+        `apps-${this.commit}/examples/${this.example}`,
       ])
     );
-    logDebug("Downloaded starter-kit example");
+    logDebug(`Downloaded ${this.example} example`);
 
     logInfo("Installing dependencies…");
     const installResult = await pkgInstall.projectInstall({
