@@ -30,6 +30,11 @@ Defaults to the `master` branch, if not specified.
 Specify where to create the [Datadog App][].
 Defaults to `starter-kit`.
 
+### `--example`
+
+The example to initialize.
+Defaults to the `starter-kit`, if not supplied
+
 ### `--verbose`
 
 Prints out debugging information.
