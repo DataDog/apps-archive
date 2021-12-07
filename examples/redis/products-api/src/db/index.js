@@ -5,10 +5,10 @@ const { createClient } = require('redis')
 
 const createConnection = async () => {
     try {
-        await mongoose.connect('mongodb://mongo:27017', {
-            user: 'admin',
-            pass: 'toto90',
-            dbName: 'project-db'
+        await mongoose.connect(process.env.MONGO_URL, {
+            user: process.env.MONGO_USERNAME,
+            pass: process.env.MONGO_PASSWORD,
+            dbName: process.env.MONGO_DB
         })
 
         console.log('MongoDB: connection successful')
@@ -21,8 +21,8 @@ const createConnection = async () => {
 function createRedisClient() {
     const client = createClient({
         socket: {
-            host: 'redis',
-            port: 6379
+            host: process.env.REDIS_HOST,
+            port: process.env.REDIS_PORT
         }
     })
 

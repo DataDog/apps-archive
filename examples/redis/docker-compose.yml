@@ -26,11 +26,18 @@ services:
     volumes:
       - ./products-api:/products-api
     environment:
+      PORT: 3020
       DD_AGENT_HOST: datadog
       DD_LOGS_INJECTION: 'true'
       DD_TRACE_AGENT_PORT: 8126
       DD_SERVICE: products-api
       DD_ENV: dev
+      MONGO_URL: mongodb://mongo:27017
+      MONGO_USERNAME: admin
+      MONGO_PASSWORD: toto90
+      MONGO_DB: project-db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
   mongo:
     image: mongo
     ports:
@@ -38,14 +45,16 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: toto90
-  react:
-    build: react-app
+  datadog-app:
+    build: datadog-app
     stdin_open: true
     tty: true
+    environment:
+      REACT_APP_API_URL: http://localhost:5000
     ports:
       - "3010:3010"
     volumes:
-      - ./react-app:/react-app
+      - ./datadog-app:/datadog-app
   redis:
     image: "redis"
     labels:

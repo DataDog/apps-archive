@@ -1,22 +1,20 @@
 'use strict'
 const express = require('express')
-
 const jsonParser = require('body-parser').json
 
 const {
     createConnection,
     createRedisClient
 } = require('./db/index')
-
 const products = require('./routes/products')
 const users = require('./routes/users')
+
 
 const app = express()
 const port = process.env.PORT || 3020
 
-app.use(jsonParser())
 
-app.get('/', (req, res) => res.send('Hello, World!'))
+app.use(jsonParser())
 
 app.use('/api/v1/products', products)
 app.use('/api/v1/users', users)
