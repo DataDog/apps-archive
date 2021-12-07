@@ -9,7 +9,8 @@ export default function setup() {
 
     root.innerHTML = `
         <div>
-            <h1>Hello, world</h1>
+            <h1>Datadog Redis App</h1>
+            <p>Browse Datadoghq.com ou Datadoghq.eu to find out more</p>
         </div>
     `
 }

@@ -1,23 +1,15 @@
 const init = async () => {
     switch (window.location.pathname) {
-        case '/keys-list': {
-            const widget = await import('./widgets/KeysList')
+        case '/clients-list': {
+            const widget = await import('./widgets/ClientsList')
             return widget.default()
         }
-        case '/key-search': {
+        case '/keys-search-widget': {
             const widget = await import('./widgets/KeySearch')
             return widget.default()
         }
-        case '/key-info': {
-            const sidePanel = await import ('./sidePanels/KeyInfo')
-            return sidePanel.default()
-        }
-        case '/key-delete': {
-            const modal = await import('./modals/DeleteKey')
-            return modal.default()
-        }
-        case '/search-key': {
-            const modal = await import('./modals/SearchKey')
+        case '/keys-search-modal': {
+            const modal = await import('./modals/KeySearch')
             return modal.default()
         }
         default: {

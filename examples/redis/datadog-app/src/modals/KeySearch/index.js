@@ -7,8 +7,7 @@ import './index.css'
 
 const client = init()
 
-const API = 'http://localhost:5000'
-
+const API_URL = process.env.REACT_APP_API_URL
 
 const Key = ({ redisKey, deleteKey }) => (
     <div className='sk-key'>
@@ -25,12 +24,12 @@ const Modal = () => {
     const { register, handleSubmit } = useForm()
     const [ keys, setKeys ] = useState(null)
 
-    const getKeys = async query => fetch(`${API}/search?query=${query}`)
+    const getKeys = async query => fetch(`${API_URL}/search?query=${query}`)
         .then(res => res.json())
         .then(({ search }) => setKeys(search))
         .catch(err => console.log('Oh no', err))
 
-    const deleteKey = async redisKey => fetch(`${API}/keys/${redisKey}`, {
+    const deleteKey = async redisKey => fetch(`${API_URL}/keys/${redisKey}`, {
         method: 'DELETE'
     })
         .then(res => res.json())

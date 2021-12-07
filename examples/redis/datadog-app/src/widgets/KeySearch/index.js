@@ -6,13 +6,13 @@ import './index.css'
 
 const client = init()
 
-const API = 'http://localhost:5000'
+const API_URL = process.env.REACT_APP_API_URL
 
 const Widget = () => {
     const onOpenModal = () => {
         client.modal.open({
             key: 'search-key-modal',
-            source: 'search-key',
+            source: 'keys-search-modal',
             size: 'md'
         })
     }

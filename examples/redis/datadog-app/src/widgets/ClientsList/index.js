@@ -6,7 +6,7 @@ import './index.css'
 
 const client = init()
 
-const API = 'http://localhost:5000'
+const API_URL = process.env.REACT_APP_API_URL
 
 const Widget = () => {
     const [ error, setError ] = useState(null)
@@ -15,7 +15,7 @@ const Widget = () => {
 
     useEffect(
         () => {
-            fetch(`${API}/clients`)
+            fetch(`${API_URL}/clients`)
                 .then(res => res.json())
                 .then(({ data }) => setRedisClients(data))
                 .catch(err => setError(err))
