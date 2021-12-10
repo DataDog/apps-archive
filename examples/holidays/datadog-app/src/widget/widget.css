@@ -1,0 +1,9 @@
+/* CSS files add styling rules to your content */
+
+h1 {
+  font-weight: bold;
+  font-size: 48px;
+  position: absolute;
+  color: #000;
+  text-shadow: 0px 0px 5px white;
+}

@@ -1,0 +1,25 @@
+version: '3'
+services:
+  flask-app:
+    build: flask-app
+    stdin_open: true
+    tty: true
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./flask-app:/flask-app
+    environment:
+      FLASK_ENV: development
+      FLASK_APP: app.py
+      FLASK_RUN_HOST: 0.0.0.0
+    env_file:
+      - ./.env
+  datadog-app:
+    build: datadog-app
+    stdin_open: true
+    tty: true
+    ports: 
+      - "3000:3000"
+    volumes:
+      - ./datadog-app:/datadog-app
+
