@@ -64,19 +64,17 @@ router.put('/:productId', async (req, res) => {
         }
     } = req
 
-    const UpdatedProduct = await ProductModel.updateOne(
+    const data = await ProductModel.updateOne(
         {
-            id: productId
-        },
-        {
+            "_id": productId
+        }, {
             name: name,
             description: description,
             price: price
         }
     )
 
-
-    res.send('FOO')
+    res.send('success')
 })
 
 module.exports = router
