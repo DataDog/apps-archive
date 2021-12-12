@@ -1,0 +1,24 @@
+{
+  "name": "@datadog/create-app",
+  "version": "1.0.0-rc.1",
+  "description": "npm init package to create a Datadog App",
+  "scripts": {
+    "build": "ncc build src/index.ts --minify --out bin",
+    "prepack": "yarn build",
+    "watch": "ncc build --out bin --watch"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/tar": "6.1.1",
+    "@vercel/ncc": "0.33.0",
+    "clipanion": "3.1.0",
+    "got": "11.8.3",
+    "pkg-install": "1.0.0",
+    "tar": "6.1.11",
+    "typescript": "4.5.2"
+  },
+  "bin": "bin/index.js",
+  "files": [
+    "bin"
+  ]
+}
